@@ -1,4 +1,5 @@
 import MeetupItem from "../components/meetups/MeetupItem";
+import MeetUpList from "../components/meetups/MeetupList";
 
 const DUMMY_DATA = [
   {
@@ -23,15 +24,7 @@ const DUMMY_DATA = [
 const AllMeetUps = () => {
   return (
     <section>
-      {DUMMY_DATA.map((item) => (
-        <MeetupItem
-          image={item.image}
-          alt={item.title}
-          title={item.title}
-          address={item.address}
-          description={item.description}
-        ></MeetupItem>
-      ))}
+     <MeetUpList data={DUMMY_DATA}></MeetUpList>
     </section>
   );
 };
