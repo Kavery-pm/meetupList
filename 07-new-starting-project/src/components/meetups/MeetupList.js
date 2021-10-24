@@ -1,8 +1,8 @@
 import MeetupItem from "./MeetupItem";
-
+import classes from './MeetupList.module.css';
 const MeetUpList = (props) => {
   return (
-    <div>
+    <div className={classes.list}>
       {props.data.map((item) => (
         <MeetupItem
           image={item.image}
