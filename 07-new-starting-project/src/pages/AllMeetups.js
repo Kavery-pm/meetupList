@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState, useCallback } from "react";
 import MeetupItem from "../components/meetups/MeetupItem";
 import MeetUpList from "../components/meetups/MeetupList";
 
@@ -24,27 +24,33 @@ const DUMMY_DATA = [
 ];
 
 const AllMeetUps = () => {
-    useEffect(() => {
-   const fetchMeetups = async()=>{
-       console.log('hello')
-const response = await fetch( "https://reacthook-f4714.firebaseio.com/meetups.json");
-const data = await response.json();
-console.log(data);
-const meetups = [];
-for (const key in data){
-   const meetup = {
-       id: key,
-       ...data[key]
-   }
-   meetups.push(meetup) ;
-}
-console.log(meetups);
-   }
-    fetchMeetups();
-    }, [])
+  const [Loading, setLoading] = useState(null);
+  const [loadedMeetups, setloadedMeetups] = useState([]);
+
+  useEffect(() => {
+    fetch("https://reacthook-f4714.firebaseio.com/meetups.json")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        const meetups = [];
+        for (const key in data) {
+          const meetup = {
+            id: key,
+            ...data[key],
+          };
+          meetups.push(meetup);
+        }
+        setLoading(false);
+        setloadedMeetups(meetups);
+      });
+  }, []);
+  if (Loading) {
+    return <p>Loading::::</p>;
+  }
   return (
     <section>
-     <MeetUpList data={DUMMY_DATA}></MeetUpList>
+      <MeetUpList data={loadedMeetups}></MeetUpList>
     </section>
   );
 };
