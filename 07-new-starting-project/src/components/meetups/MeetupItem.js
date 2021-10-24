@@ -13,7 +13,7 @@ const MeetupItem = (props) => {
           <p>{props.description}</p>
         </div>
         <div className={classes.actions}>
-          <button>To favorites</button>
+          <button onClick={toggleFavoriteHandler}>To favorites</button>
         </div>
       </Card>
     </li>
