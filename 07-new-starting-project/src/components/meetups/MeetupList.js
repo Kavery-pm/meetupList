@@ -1,4 +1,6 @@
-const MeetUpList = ()=>{
+import MeetupItem from "./MeetupItem";
 
-}
-export default MeetupList;
+const MeetUpList = (props) => {
+  return <MeetupItem></MeetupItem>;
+};
+export default MeetUpList;
