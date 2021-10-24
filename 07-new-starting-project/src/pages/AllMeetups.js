@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import MeetupItem from "../components/meetups/MeetupItem";
 import MeetUpList from "../components/meetups/MeetupList";
 
@@ -21,7 +22,26 @@ const DUMMY_DATA = [
       "This is a first, amazing meetup which you definitely should not miss. It will be a lot of fun!",
   },
 ];
+
 const AllMeetUps = () => {
+    useEffect(() => {
+   const fetchMeetups = async()=>{
+       console.log('hello')
+const response = await fetch( "https://reacthook-f4714.firebaseio.com/meetups.json");
+const data = await response.json();
+console.log(data);
+const meetups = [];
+for (const key in data){
+   const meetup = {
+       id: key,
+       ...data[key]
+   }
+   meetups.push(meetup) ;
+}
+console.log(meetups);
+   }
+    fetchMeetups();
+    }, [])
   return (
     <section>
      <MeetUpList data={DUMMY_DATA}></MeetUpList>
