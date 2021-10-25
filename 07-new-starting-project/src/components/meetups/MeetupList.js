@@ -1,11 +1,12 @@
 import MeetupItem from "./MeetupItem";
 import classes from "./MeetupList.module.css";
 const MeetUpList = (props) => {
-    console.log(props);
+    console.log('meet up list'+props.data);
   return (
     <div className={classes.list}>
       {props.data.map((item) => (
         <MeetupItem
+        id={item.id}
           key={item.id}
           image={item.image}
           alt={item.title}

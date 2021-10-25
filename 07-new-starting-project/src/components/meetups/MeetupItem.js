@@ -3,6 +3,7 @@ import  favoritesContext  from "../../store/favorite-context";
 import Card from "../../UI/card";
 import classes from "./meetupItem.module.css";
 const MeetupItem = (props) => {
+    console.log(props);
   const favCtx = useContext(favoritesContext);
   const isItemFavorite = favCtx.itemIsFavorite(props.id);
   const toggleFavoriteHandler = () => {
